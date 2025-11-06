@@ -9,6 +9,122 @@
   background: #0a0a0a;
   color: #fff;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light Mode Styles */
+.app.light {
+  background: #f5f5f5;
+  color: #1a1a1a;
+}
+
+.app.light .navbar {
+  background: rgba(245, 245, 245, 0.95);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.app.light .nav-links a {
+  color: #1a1a1a;
+}
+
+.app.light .nav-links a:hover {
+  color: #FFD700;
+}
+
+.app.light .btn-connect {
+  border: 1px solid #1a1a1a;
+  color: #1a1a1a;
+}
+
+.app.light .btn-connect:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.app.light .hero-title {
+  color: #1a1a1a;
+}
+
+.app.light .hero-subtitle {
+  color: rgba(26, 26, 26, 0.8);
+}
+
+.app.light .stats-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.app.light .stat-value {
+  color: #1a1a1a;
+}
+
+.app.light .stat-label {
+  color: rgba(26, 26, 26, 0.6);
+}
+
+.app.light .section-title {
+  color: #1a1a1a;
+}
+
+.app.light .section-description {
+  color: rgba(26, 26, 26, 0.7);
+}
+
+.app.light .nft-card,
+.app.light .artist-type-card,
+.app.light .artist-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.app.light .trending-section,
+.app.light .artists-section {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.app.light .footer {
+  background: rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.app.light .footer-description,
+.app.light .footer-column a {
+  color: rgba(26, 26, 26, 0.6);
+}
+
+.app.light .footer-column h4 {
+  color: #1a1a1a;
+}
+
+.app.light .footer-column a:hover {
+  color: #FFD700;
+}
+
+.app.light .social-icon {
+  color: rgba(26, 26, 26, 0.7);
+}
+
+.app.light .copyright {
+  color: rgba(26, 26, 26, 0.5);
+}
+
+.app.light .email-input {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: #1a1a1a;
+}
+
+.app.light .email-input::placeholder {
+  color: rgba(26, 26, 26, 0.5);
+}
+
+.app.light .theme-toggle {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: #1a1a1a;
+}
+
+.app.light .theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.2);
 }
 
 /* Navigation */
@@ -18,9 +134,12 @@
   width: 100%;
   background: rgba(10, 10, 10, 0.8);
   backdrop-filter: blur(10px);
-  padding: 1.5rem 0;
+  padding: 1rem 0;
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 70px;
+  display: flex;
+  align-items: center;
 }
 
 .nav-container {
@@ -32,6 +151,35 @@
   align-items: center;
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.logo-img {
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+  display: block;
+}
+
+/* Ensure logo fits within navbar height */
+.navbar .logo-img {
+  max-height: 50px; /* Fits comfortably within navbar */
+  height: auto;
+  width: auto;
+}
+
+.footer-logo {
+  max-height: 40px;
+  height: auto;
+  width: auto;
+  margin-bottom: 1.5rem;
+}
+
+/* Legacy text logo fallback */
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
@@ -54,7 +202,9 @@
 }
 
 .nav-links a:hover {
-  opacity: 0.7;
+  opacity: 0.8;
+  color: #FFD700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 .btn-connect {
@@ -72,6 +222,28 @@
 
 .btn-connect:hover {
   background: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle {
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 215, 0, 0.5);
+  transform: scale(1.1);
 }
 
 /* Hero Section */
@@ -128,13 +300,15 @@
 }
 
 .btn-gradient {
-  background: linear-gradient(135deg, #fbbf24 0%, #10b981 100%);
+  background: linear-gradient(135deg, #FFD700 0%, #FFBF00 100%);
   color: #000;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
 }
 
 .btn-gradient:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6);
+  background: linear-gradient(135deg, #FFED4E 0%, #FFD700 100%);
 }
 
 .btn-link {
@@ -147,7 +321,18 @@
 }
 
 .btn-link:hover {
-  opacity: 0.8;
+  opacity: 1;
+  color: #FFD700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.btn-link .arrow {
+  transition: transform 0.3s;
+}
+
+.btn-link:hover .arrow {
+  transform: translateX(5px);
+  color: #FFD700;
 }
 
 .arrow {
@@ -204,13 +389,29 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: 2px solid #0a0a0a;
   margin-left: -8px;
 }
 
-.avatar:first-child {
+.avatar:nth-child(1) {
+  background: linear-gradient(135deg, #FFD700 0%, #FFBF00 100%);
   margin-left: 0;
+}
+
+.avatar:nth-child(2) {
+  background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+}
+
+.avatar:nth-child(3) {
+  background: linear-gradient(135deg, #2E8B57 0%, #228B22 100%);
+}
+
+.avatar:nth-child(4) {
+  background: linear-gradient(135deg, #008080 0%, #00CED1 100%);
+}
+
+.avatar:nth-child(5) {
+  background: linear-gradient(135deg, #800080 0%, #9370DB 100%);
 }
 
 /* Hero Image */
@@ -240,9 +441,10 @@
 .portrait-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(251, 191, 36, 0.3) 0%, rgba(16, 185, 129, 0.3) 100%);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 165, 0, 0.2) 100%);
   border-radius: 20px;
   position: relative;
+  box-shadow: 0 0 40px rgba(255, 200, 100, 0.3);
 }
 
 .portrait-placeholder::before {
@@ -274,28 +476,31 @@
 .orb-1 {
   width: 200px;
   height: 200px;
-  background: #fbbf24;
+  background: rgba(255, 200, 100, 0.6);
   top: -50px;
   left: -50px;
   animation: float-orb 6s ease-in-out infinite;
+  box-shadow: 0 0 60px rgba(255, 215, 0, 0.5);
 }
 
 .orb-2 {
   width: 150px;
   height: 150px;
-  background: #10b981;
+  background: rgba(255, 165, 0, 0.5);
   bottom: -30px;
   right: -30px;
   animation: float-orb 8s ease-in-out infinite reverse;
+  box-shadow: 0 0 50px rgba(255, 200, 100, 0.4);
 }
 
 .orb-3 {
   width: 100px;
   height: 100px;
-  background: #8b5cf6;
+  background: rgba(255, 215, 0, 0.4);
   top: 50%;
   right: -20px;
   animation: float-orb 7s ease-in-out infinite;
+  box-shadow: 0 0 40px rgba(255, 255, 150, 0.3);
 }
 
 @keyframes float-orb {
@@ -371,7 +576,14 @@
 }
 
 .see-all-link:hover {
-  opacity: 0.8;
+  opacity: 1;
+  color: #FFD700;
+}
+
+.see-all-link:hover span {
+  transform: translateX(5px);
+  display: inline-block;
+  transition: transform 0.3s;
 }
 
 .nft-grid {
@@ -391,7 +603,8 @@
 
 .nft-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.3);
 }
 
 .nft-info {
@@ -417,8 +630,9 @@
 }
 
 .nft-1 {
-  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 165, 0, 0.15) 100%);
   position: relative;
+  border: 1px solid rgba(255, 215, 0, 0.2);
 }
 
 .nft-1::before {
@@ -431,8 +645,9 @@
 }
 
 .nft-2 {
-  background: linear-gradient(135deg, #334155 0%, #475569 100%);
+  background: linear-gradient(135deg, rgba(46, 139, 87, 0.2) 0%, rgba(34, 139, 34, 0.15) 100%);
   position: relative;
+  border: 1px solid rgba(46, 139, 87, 0.2);
 }
 
 .nft-2::before {
@@ -445,8 +660,9 @@
 }
 
 .nft-3 {
-  background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+  background: linear-gradient(135deg, rgba(128, 0, 128, 0.2) 0%, rgba(147, 112, 219, 0.15) 100%);
   position: relative;
+  border: 1px solid rgba(128, 0, 128, 0.2);
 }
 
 .nft-3::before {
@@ -459,8 +675,9 @@
 }
 
 .nft-4 {
-  background: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
+  background: linear-gradient(135deg, rgba(0, 128, 128, 0.2) 0%, rgba(0, 206, 209, 0.15) 100%);
   position: relative;
+  border: 1px solid rgba(0, 128, 128, 0.2);
 }
 
 .nft-4::before {
@@ -495,8 +712,24 @@
 
 .artist-type-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  border-color: rgba(251, 191, 36, 0.3);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+  border-color: rgba(255, 215, 0, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.artist-type-card:nth-child(1):hover {
+  border-color: rgba(255, 215, 0, 0.6);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+}
+
+.artist-type-card:nth-child(2):hover {
+  border-color: rgba(46, 139, 87, 0.6);
+  box-shadow: 0 10px 30px rgba(46, 139, 87, 0.3);
+}
+
+.artist-type-card:nth-child(3):hover {
+  border-color: rgba(128, 0, 128, 0.6);
+  box-shadow: 0 10px 30px rgba(128, 0, 128, 0.3);
 }
 
 .artist-type-icon {
@@ -534,6 +767,8 @@
 
 .artist-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.3);
 }
 
 .artist-header {
@@ -547,7 +782,8 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
 }
 
 .artist-name {
@@ -568,8 +804,9 @@
 }
 
 .artwork-1 {
-  background: linear-gradient(135deg, rgba(236, 72, 153, 0.5) 0%, rgba(16, 185, 129, 0.5) 100%);
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(255, 165, 0, 0.3) 100%);
   position: relative;
+  border: 1px solid rgba(255, 215, 0, 0.3);
 }
 
 .artwork-1::before {
@@ -582,8 +819,9 @@
 }
 
 .artwork-2 {
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.5) 0%, rgba(59, 130, 246, 0.5) 100%);
+  background: linear-gradient(135deg, rgba(46, 139, 87, 0.3) 0%, rgba(0, 128, 128, 0.3) 100%);
   position: relative;
+  border: 1px solid rgba(46, 139, 87, 0.3);
 }
 
 .artwork-2::before {
@@ -618,7 +856,8 @@
 }
 
 .partner-logo:hover {
-  color: #fff;
+  color: #FFD700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 /* Subscription Section */
@@ -670,7 +909,8 @@
 
 .email-input:focus {
   outline: none;
-  border-color: rgba(251, 191, 36, 0.5);
+  border-color: rgba(255, 215, 0, 0.6);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
 }
 
 /* Footer */
@@ -715,7 +955,8 @@
 }
 
 .social-icon:hover {
-  color: #fff;
+  color: #FFD700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
 }
 
 .copyright {
@@ -751,7 +992,8 @@
 }
 
 .footer-column a:hover {
-  color: #fff;
+  color: #FFD700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
 }
 
 .search-floating-btn {
@@ -775,8 +1017,10 @@
 }
 
 .search-floating-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 215, 0, 0.2);
+  border-color: rgba(255, 215, 0, 0.5);
   transform: scale(1.1);
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
 }
 
 .search-floating-btn::before {
@@ -785,7 +1029,7 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
   animation: pulse 2s ease-in-out infinite;
 }
 

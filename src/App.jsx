@@ -1,19 +1,63 @@
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
+  const [theme, setTheme] = useState('dark')
+
+  useEffect(() => {
+    // Check system preference or localStorage
+    const savedTheme = localStorage.getItem('theme')
+    const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches
+    const initialTheme = savedTheme || (systemPrefersLight ? 'light' : 'dark')
+    
+    setTheme(initialTheme)
+    document.documentElement.setAttribute('data-theme', initialTheme)
+    
+    // Listen for system theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: light)')
+    const handleChange = (e) => {
+      if (!localStorage.getItem('theme')) {
+        const newTheme = e.matches ? 'light' : 'dark'
+        setTheme(newTheme)
+        document.documentElement.setAttribute('data-theme', newTheme)
+      }
+    }
+    
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark'
+    setTheme(newTheme)
+    localStorage.setItem('theme', newTheme)
+    document.documentElement.setAttribute('data-theme', newTheme)
+  }
+
   return (
-    <div className="app">
+    <div className={`app ${theme}`}>
       {/* Navigation */}
       <nav className="navbar">
         <div className="nav-container">
-          <div className="logo">Mimi & Wewe</div>
+          <div className="logo-container">
+            <img 
+              src={theme === 'dark' ? '/logos/darkmode.png' : '/logos/lightmode.png'} 
+              alt="Mimi & Wewe" 
+              className="logo-img"
+            />
+          </div>
           <ul className="nav-links">
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#artists">Artists</a></li>
             <li><a href="#events">Events</a></li>
             <li><a href="#community">Community</a></li>
           </ul>
-          <button className="btn-connect">Join Community</button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+              {theme === 'dark' ? '☀️' : '🌙'}
+            </button>
+            <button className="btn-connect">Join Community</button>
+          </div>
         </div>
       </nav>
 
@@ -201,7 +245,13 @@ function App() {
         <div className="container">
           <div className="footer-content">
             <div className="footer-brand">
-              <div className="logo">Mimi & Wewe</div>
+              <div className="logo-container">
+                <img 
+                  src={theme === 'dark' ? '/logos/darkmode.png' : '/logos/lightmode.png'} 
+                  alt="Mimi & Wewe" 
+                  className="logo-img footer-logo"
+                />
+              </div>
               <p className="footer-description">
                 An entertainment community that thrives in making art. Bringing together artists across performing arts, visual arts, and literary arts to celebrate diverse forms of artistic expression.
               </p>
