@@ -20,6 +20,13 @@
     <title>Mimi & Wewe - Cheche za Sanaa | Art Community</title>
   </head>
   <body>
+    <script>
+      const redirectPath = sessionStorage.getItem('redirect-pathname')
+      if (redirectPath) {
+        sessionStorage.removeItem('redirect-pathname')
+        window.history.replaceState(null, '', redirectPath)
+      }
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

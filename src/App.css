@@ -2237,6 +2237,28 @@
   border-color: #FFD700;
   width: 18px;
 }
+
+.app.light .community-carousel {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.app.light .community-carousel .carousel-card {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.app.light .community-carousel .carousel-body h3 {
+  color: #1a1a1a;
+}
+
+.app.light .community-carousel .carousel-body .meta {
+  color: rgba(26, 26, 26, 0.7);
+}
+
+.app.light .community-carousel .carousel-body .seats {
+  color: #b8860b;
+}
 .map-circle {
   width: 260px;
   height: 260px;
