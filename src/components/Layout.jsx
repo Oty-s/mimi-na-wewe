@@ -37,14 +37,14 @@ function Layout({ children }) {
     <div className={`app ${theme}`}>
       {/* Navigation */}
       <nav className="navbar">
+        <Link to="/" className="logo-container">
+          <img 
+            src={theme === 'dark' ? '/logos/darkmode.png' : '/logos/lightmode.png'} 
+            alt="Mimi & Wewe" 
+            className="logo-img"
+          />
+        </Link>
         <div className="nav-container">
-          <Link to="/" className="logo-container">
-            <img 
-              src={theme === 'dark' ? '/logos/darkmode.png' : '/logos/lightmode.png'} 
-              alt="Mimi & Wewe" 
-              className="logo-img"
-            />
-          </Link>
           <ul className="nav-links">
             <li><NavLink to="/" className={({ isActive }) => isActive ? 'active' : undefined}>Community</NavLink></li>
             <li><NavLink to="/gallery" className={({ isActive }) => isActive ? 'active' : undefined}>Gallery</NavLink></li>
@@ -65,14 +65,14 @@ function Layout({ children }) {
         <div className="container">
           <div className="footer-content">
             <div className="footer-column footer-brand-column">
-              <div className="footer-brand">
-                <div className="logo-container">
-                  <img 
-                    src={theme === 'dark' ? '/logos/darkmode.png' : '/logos/lightmode.png'} 
+              <div className="footer-logo-standalone">
+                <img 
+                  src={theme === 'dark' ? '/logos/darkmode.png' : '/logos/lightmode.png'} 
                   alt="Usanii Deluxe" 
-                    className="logo-img footer-logo"
-                  />
-                </div>
+                  className="logo-img footer-logo"
+                />
+              </div>
+              <div className="footer-brand">
                 <p className="footer-description">
                 Usanii Deluxe is an entertainment community that thrives in making art—bringing together artists across performing, visual, and literary arts to celebrate diverse expression.
                 </p>
