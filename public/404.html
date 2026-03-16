@@ -160,18 +160,13 @@
       </div>
     </div>
     <script>
-      const redirectPath =
-        window.location.pathname + window.location.search + window.location.hash
-
-      sessionStorage.setItem('redirect-pathname', redirectPath)
-
-      const REDIRECT_DELAY = 1500
+      const REDIRECT_DELAY = 3500
       const timerEl = document.getElementById('timer')
       const retryBtn = document.getElementById('retry')
       let remaining = REDIRECT_DELAY
 
       const updateTimer = () => {
-        timerEl.textContent = `Auto-redirecting in ${(remaining / 1000).toFixed(1)}s…`
+        timerEl.textContent = `Auto-redirecting home in ${(remaining / 1000).toFixed(1)}s…`
       }
 
       const goHome = () => window.location.replace('/')
